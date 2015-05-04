@@ -16,15 +16,21 @@ import com.mtcl.sitemonitoring.service.CheckService;
 @Getter
 @Setter
 public class CheckListController {
-	
+
 	@ManagedProperty("#{checkService}")
 	private CheckService checkService;
-	
+
 	private List<Check> checks;
-	
+
+	private Check check = new Check();
+
 	@PostConstruct
-	public void loadChecks(){
+	public void loadChecks() {
 		checks = checkService.findAll();
+	}
+
+	public void save() {
+		checkService.save(check);
 	}
 
 }

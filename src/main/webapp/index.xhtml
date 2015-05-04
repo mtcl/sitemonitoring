@@ -13,6 +13,14 @@
 		</p:column>
 	</p:dataTable>
 
+	<h:form>
+		<p:panelGrid columns="2">
+		name: <p:inputText value="#{checkListController.check.name}" />
+		url: <p:inputText value="#{checkListController.check.url}"/>
+		</p:panelGrid>
+		<p:commandButton value="save" action="#{checkListController.save()}" />
+	</h:form>
+
 </h:body>
 
 </html>

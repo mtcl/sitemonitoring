@@ -18,4 +18,9 @@ public class CheckService {
 		return checkRepository.findAll();
 	}
 
+	public void save(Check check) {
+		checkRepository.save(check);
+
+	}
+
 }
