@@ -1,24 +1,30 @@
 package com.mtcl.sitemonitoring.controller;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import com.mtcl.sitemonitoring.service.HelloSpringService;
+import com.mtcl.sitemonitoring.entity.Check;
+import com.mtcl.sitemonitoring.service.CheckService;
 
 @ManagedBean
 @Getter
 @Setter
-public class HelloController {
+public class CheckListController {
 	
-	@ManagedProperty("#{helloSpringService}")
-	private HelloSpringService helloSpringService;
+	@ManagedProperty("#{checkService}")
+	private CheckService checkService;
 	
+	private List<Check> checks;
 	
-	public String showHello(){
-		return helloSpringService.sayHello();
+	@PostConstruct
+	public void loadChecks(){
+		checks = checkService.findAll();
 	}
 
 }
