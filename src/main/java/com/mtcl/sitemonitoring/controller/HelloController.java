@@ -23,5 +23,5 @@ public class HelloController {
 	public void setHelloSpringService(HelloSpringService helloSpringService) {
 		this.helloSpringService = helloSpringService;
 	}
-
+   
 }
