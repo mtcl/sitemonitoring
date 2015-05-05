@@ -49,6 +49,10 @@ public class CheckListController implements Serializable {
 		setInfoMessage("Check Removed");
 	}
 
+	public void clear(){
+		check = new Check();
+	}
+	
 	public void setInfoMessage(String summary) {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null));

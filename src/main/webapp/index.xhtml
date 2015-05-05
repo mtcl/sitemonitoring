@@ -17,13 +17,9 @@
 		</p:column>
 		<p:column headerText="Operations">
 			<h:form>
-				<p:commandButton value="edit"
-					action="#{checkListController.setCheck(check)}" update=":checkForm" />
-				<p:commandButton value="remove"
-					action="#{checkListController.remove(check)}"
-					update=":checkTable, :messages">
-					<p:confirm header="Confirmation" message="Are you sure?"
-						icon="ui-icon-alert" />
+				<p:commandButton value="edit" action="#{checkListController.setCheck(check)}" update=":checkForm" oncomplete="PF('checkDialog').show()" resetValues="true"/>
+				<p:commandButton value="remove"	action="#{checkListController.remove(check)}" update=":checkTable, :messages">
+					<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 				</p:commandButton>
 			</h:form>
 		</p:column>
@@ -31,23 +27,30 @@
 
 	<h:form>
 		<p:confirmDialog global="true" showEffect="fade" closeOnEscape="true">
-			<p:commandButton value="Yes" type="button"
-				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			<p:commandButton value="No" type="button"
-				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 		</p:confirmDialog>
 	</h:form>
-
-	<h:form id="checkForm">
-		<p:focus />
-		<p:panelGrid columns="2">
-		name: <p:inputText value="#{checkListController.check.name}" />
-		url: <p:inputText value="#{checkListController.check.url}" />
-		</p:panelGrid>
-		<p:commandButton value="save" action="#{checkListController.save()}"
-			update="checkForm, :checkTable, :messages" />
+	
+	<br />
+	<h:form>
+	<p:commandButton value="add check" 
+		action="#{checkListController.clear()}" 
+		update=":checkForm" 
+		oncomplete="PF('checkDialog').show()"
+		resetValues="true"/>
 	</h:form>
-
+	
+	<p:dialog widgetVar="checkDialog" closeOnEscape="true" modal="true" header="check">
+		<h:form id="checkForm">
+			<p:focus />
+			<p:panelGrid columns="2">
+			name: <p:inputText value="#{checkListController.check.name}" />
+			url: <p:inputText value="#{checkListController.check.url}" />
+			</p:panelGrid>
+			<p:commandButton value="save" action="#{checkListController.save()}" update="checkForm, :checkTable, :messages" />
+		</h:form>
+	</p:dialog>
 </h:body>
 
 </html>
