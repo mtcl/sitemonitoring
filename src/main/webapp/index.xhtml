@@ -4,7 +4,7 @@
 
 <h:head></h:head>
 <h:body>
-	<p:dataTable value="#{checkListController.checks}" var="check">
+	<p:dataTable value="#{checkListController.checks}" var="check" id="checkTable">
 		<p:column headerText="Name">
 			#{check.name}
 		</p:column>
@@ -13,12 +13,12 @@
 		</p:column>
 	</p:dataTable>
 
-	<h:form>
+	<h:form id="checkForm">
 		<p:panelGrid columns="2">
 		name: <p:inputText value="#{checkListController.check.name}" />
 		url: <p:inputText value="#{checkListController.check.url}"/>
 		</p:panelGrid>
-		<p:commandButton value="save" action="#{checkListController.save()}" />
+		<p:commandButton value="save" action="#{checkListController.save()}" update="checkForm, :checkTable"/>
 	</h:form>
 
 </h:body>
