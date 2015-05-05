@@ -20,7 +20,7 @@ import com.mtcl.sitemonitoring.service.CheckService;
 @Getter
 @Setter
 @ViewScoped
-public class CheckListController implements Serializable{
+public class CheckListController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,17 @@ public class CheckListController implements Serializable{
 		checkService.save(check);
 		check = new Check();
 		loadChecks();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Information Saved", null));
+		setInfoMessage("Information Saved");
+	}
+
+	public void setInfoMessage(String summary) {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null));
+	}
+
+	public void setErrorMessage(String summary) {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null));
 	}
 
 }
