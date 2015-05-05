@@ -23,4 +23,8 @@ public class CheckService {
 
 	}
 
+	public void remove(Check check) {
+		checkRepository.delete(check);
+	}
+
 }

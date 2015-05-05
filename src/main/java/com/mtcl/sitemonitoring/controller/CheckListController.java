@@ -40,7 +40,13 @@ public class CheckListController implements Serializable {
 		checkService.save(check);
 		check = new Check();
 		loadChecks();
-		setInfoMessage("Information Saved");
+		setInfoMessage("Check Saved");
+	}
+	
+	public void remove(Check check){
+		checkService.remove(check);
+		loadChecks();
+		setInfoMessage("Check Removed");
 	}
 
 	public void setInfoMessage(String summary) {

@@ -15,6 +15,14 @@
 		<p:column headerText="URL">
 			<a href="#{check.url}" target="_blank">#{check.url}</a>
 		</p:column>
+		<p:column headerText="Operations">
+			<h:form>
+				<p:commandButton value="edit"
+					action="#{checkListController.setCheck(check)}" update=":checkForm" />
+				<p:commandButton value="remove"
+					action="#{checkListController.remove(check)}" update=":checkTable, :messages" />
+			</h:form>
+		</p:column>
 	</p:dataTable>
 
 	<h:form id="checkForm">
